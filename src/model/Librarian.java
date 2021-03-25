@@ -1,32 +1,27 @@
 // specify the package
+package model;
 
 // system imports
-import java.util.Hashtable;
-import java.util.Properties;
 
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-
-// project imports
-import impresario.IModel;
-import impresario.ISlideShow;
-import impresario.IView;
-import impresario.ModelRegistry;
-
+import event.Event;
 import exception.InvalidPrimaryKeyException;
 import exception.PasswordMismatchException;
-import event.Event;
-import model.AccountHolder;
-import model.Transaction;
-import model.TransactionFactory;
+import impresario.IModel;
+import impresario.IView;
+import impresario.ModelRegistry;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import userinterface.MainStageContainer;
 import userinterface.View;
 import userinterface.ViewFactory;
 import userinterface.WindowPosition;
 
+import java.util.Hashtable;
+import java.util.Properties;
+
 /** The class containing the Teller  for the ATM application */
 //==============================================================
-public class Teller implements IView, IModel
+public class Librarian implements IView, IModel
 // This class implements all these interfaces (and does NOT extend 'EntityBase')
 // because it does NOT play the role of accessing the back-end database tables.
 // It only plays a front-end role. 'EntityBase' objects play both roles.
@@ -46,17 +41,17 @@ public class Teller implements IView, IModel
 
 	// constructor for this class
 	//----------------------------------------------------------
-	public Teller()
+	public Librarian()
 	{
 		myStage = MainStageContainer.getInstance();
 		myViews = new Hashtable<String, Scene>();
 
 		// STEP 3.1: Create the Registry object - if you inherit from
 		// EntityBase, this is done for you. Otherwise, you do it yourself
-		myRegistry = new ModelRegistry("Teller");
+		myRegistry = new ModelRegistry("Librarian");
 		if(myRegistry == null)
 		{
-			new Event(Event.getLeafLevelClassName(this), "Teller",
+			new Event(Event.getLeafLevelClassName(this), "Librarian",
 				"Could not instantiate Registry", Event.ERROR);
 		}
 
@@ -64,14 +59,13 @@ public class Teller implements IView, IModel
 		setDependencies();
 
 		// Set up the initial view
-		createAndShowTellerView();
+		createAndShowLibrarianView();
 	}
 
 	//-----------------------------------------------------------------------------------
 	private void setDependencies()
 	{
 		dependencies = new Properties();
-		dependencies.setProperty("Login", "LoginError");
 		dependencies.setProperty("Deposit", "TransactionError");
 		dependencies.setProperty("Withdraw", "TransactionError");
 		dependencies.setProperty("Transfer", "TransactionError");
@@ -92,11 +86,6 @@ public class Teller implements IView, IModel
 	//----------------------------------------------------------
 	public Object getState(String key)
 	{
-		if (key.equals("LoginError") == true)
-		{
-			return loginErrorMessage;
-		}
-		else
 		if (key.equals("TransactionError") == true)
 		{
 			return transactionErrorMessage;
@@ -163,7 +152,7 @@ public class Teller implements IView, IModel
 			myAccountHolder = null;
 			myViews.remove("TransactionChoiceView");
 
-			createAndShowTellerView();
+			createAndShowLibrarianView();
 		}
 
 		myRegistry.updateSubscribers(key, this);
@@ -249,16 +238,16 @@ public class Teller implements IView, IModel
 	}
 
 	//------------------------------------------------------------
-	private void createAndShowTellerView()
+	private void createAndShowLibrarianView()
 	{
-		Scene currentScene = (Scene)myViews.get("TellerView");
+		Scene currentScene = (Scene)myViews.get("LibrarianView");
 
 		if (currentScene == null)
 		{
 			// create our initial view
-			View newView = ViewFactory.createView("TellerView", this); // USE VIEW FACTORY
+			View newView = ViewFactory.createView("LibrarianView", this); // USE VIEW FACTORY
 			currentScene = new Scene(newView);
-			myViews.put("TellerView", currentScene);
+			myViews.put("LibrarianView", currentScene);
 		}
 				
 		swapToView(currentScene);
