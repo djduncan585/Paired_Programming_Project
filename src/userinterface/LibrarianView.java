@@ -168,7 +168,7 @@ public class LibrarianView extends View
 
 			@Override
 			public void handle(ActionEvent e) {
-				processAction(e);
+				myModel.stateChangeRequest("SearchBooks", null);
 			}
 		});
 		buttonBox.getChildren().add(searchBooksButton);
@@ -216,22 +216,8 @@ public class LibrarianView extends View
 	//-------------------------------------------------------------
 	public void processAction(Event evt)
 	{
-	/*	// DEBUG: System.out.println("TellerView.actionPerformed()");
+	// DEBUG: System.out.println("TellerView.actionPerformed()");
 
-		clearErrorMessage();
-
-		String useridEntered = userid.getText();
-
-		if ((useridEntered == null) || (useridEntered.length() == 0))
-		{
-			displayErrorMessage("Please enter a user id!");
-			userid.requestFocus();
-		}
-		else
-		{
-			String passwordEntered = password.getText();
-			processUserIDAndPassword(useridEntered, passwordEntered);
-		}*/
 
 	}
 
