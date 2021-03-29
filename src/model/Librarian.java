@@ -226,8 +226,8 @@ public class Librarian implements IView, IModel
 
 	public void doBookQuery(String querystring)
 	{
-		System.out.println("From inside doBookQuery");
-		System.out.println(querystring);
+		BookCollection bookCollection = new BookCollection();
+		System.out.println(bookCollection.getBooksByTitle(querystring));
 	}
 
 	public void exitLibraryApp(){System.exit(0);}
