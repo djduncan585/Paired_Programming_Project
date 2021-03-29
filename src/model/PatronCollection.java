@@ -82,43 +82,43 @@ public class PatronCollection extends EntityBase {
     }
 
 
-    public static void main(String[] args) {
-
-        try {
-
-
-            String Patron1 = "2000-08-18";
-            String Patron2 = "1950-05-02";
-            String Patron3 = "2100-03-16";
-            String Patron4 = "1968-07-07";
-            String zip1 = "14620";
-            String zip2 = "14487";
-            String zip3 = "15798";
-
-
-
-
-            PatronCollection manager = new PatronCollection();
-            //manager.addPatron("Lake st","Oswego","2000-06-02","mjones@gmail.com","Mark Jones" ,"30","ACTIVE","16487");
-            System.out.println(manager.getPatronsByDate(Patron1));
-            System.out.println(manager.getPatronsByDate(Patron2));
-            System.out.println(manager.getPatronsByDate(Patron3));
-            System.out.println(manager.getPatronsByDate(Patron4));
-            System.out.println(manager.getPatronsByZip(zip1));
-            System.out.println(manager.getPatronsByZip(zip2));
-            System.out.println(manager.getPatronsByZip(zip3));
-
-            String birth = "1997-03-16";
-            String death = "2100-03-17";
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = dateFormat.parse(birth);
-            Date date2 = dateFormat.parse(death);
-            System.out.println(date.before(date2));
-            System.out.println(date);
-            System.out.println(date2);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void main(String[] args) {
+//
+//        try {
+//
+//
+//            String Patron1 = "2000-08-18";
+//            String Patron2 = "1950-05-02";
+//            String Patron3 = "2100-03-16";
+//            String Patron4 = "1968-07-07";
+//            String zip1 = "14620";
+//            String zip2 = "14487";
+//            String zip3 = "15798";
+//
+//
+//
+//
+//            PatronCollection manager = new PatronCollection();
+//            //manager.addPatron("Lake st","Oswego","2000-06-02","mjones@gmail.com","Mark Jones" ,"30","ACTIVE","16487");
+//            System.out.println(manager.getPatronsByDate(Patron1));
+//            System.out.println(manager.getPatronsByDate(Patron2));
+//            System.out.println(manager.getPatronsByDate(Patron3));
+//            System.out.println(manager.getPatronsByDate(Patron4));
+//            System.out.println(manager.getPatronsByZip(zip1));
+//            System.out.println(manager.getPatronsByZip(zip2));
+//            System.out.println(manager.getPatronsByZip(zip3));
+//
+//            String birth = "1997-03-16";
+//            String death = "2100-03-17";
+//            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//            Date date = dateFormat.parse(birth);
+//            Date date2 = dateFormat.parse(death);
+//            System.out.println(date.before(date2));
+//            System.out.println(date);
+//            System.out.println(date2);
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

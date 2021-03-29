@@ -77,44 +77,44 @@ public class BookCollection extends EntityBase {
 
 
 
-    public static void main(String[] args) { //Just used for testing. This will need to be replaced with Java FX
-
-        try {
-
-
-            String book1 = "Har";
-            String book2 = "Pot";
-            String book3 = "Boy";
-            String book4 = "Wrong";
-            String year1 = "2021";
-            String year2 = "2010";
-            String year3 = "2000";
-            String year4 = "1999";
-            String year5 = "1885";
-
-
-            BookCollection manager = new BookCollection();
-            manager.addBook("Dean Koontz","Watchers","1985","ACTIVE");
-            manager = new BookCollection();
-            Properties properties = new Properties();
-            properties.put("author", "Dean Koontz");
-            properties.put("bookTitle", "Watchers");
-            properties.put("pubYear", "1985");
-            properties.put("status", "Active");
-            Book book = new Book(properties);
-            book.update();
-            System.out.println(manager.getBooksByTitle(book1));
-            System.out.println(manager.getBooksByTitle(book2));
-            System.out.println(manager.getBooksByTitle(book3));
-            System.out.println(manager.getBooksByTitle(book4));
-            System.out.println(manager.getBooksByYear(year1));
-            System.out.println(manager.getBooksByYear(year2));
-            System.out.println(manager.getBooksByYear(year3));
-            System.out.println(manager.getBooksByYear(year4));
-            System.out.println(manager.getBooksByYear(year5));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void main(String[] args) { //Just used for testing. This will need to be replaced with Java FX
+//
+//        try {
+//
+//
+//            String book1 = "Har";
+//            String book2 = "Pot";
+//            String book3 = "Boy";
+//            String book4 = "Wrong";
+//            String year1 = "2021";
+//            String year2 = "2010";
+//            String year3 = "2000";
+//            String year4 = "1999";
+//            String year5 = "1885";
+//
+//
+//            BookCollection manager = new BookCollection();
+//            manager.addBook("Dean Koontz","Watchers","1985","ACTIVE");
+//            manager = new BookCollection();
+//            Properties properties = new Properties();
+//            properties.put("author", "Dean Koontz");
+//            properties.put("bookTitle", "Watchers");
+//            properties.put("pubYear", "1985");
+//            properties.put("status", "Active");
+//            Book book = new Book(properties);
+//            book.update();
+//            System.out.println(manager.getBooksByTitle(book1));
+//            System.out.println(manager.getBooksByTitle(book2));
+//            System.out.println(manager.getBooksByTitle(book3));
+//            System.out.println(manager.getBooksByTitle(book4));
+//            System.out.println(manager.getBooksByYear(year1));
+//            System.out.println(manager.getBooksByYear(year2));
+//            System.out.println(manager.getBooksByYear(year3));
+//            System.out.println(manager.getBooksByYear(year4));
+//            System.out.println(manager.getBooksByYear(year5));
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

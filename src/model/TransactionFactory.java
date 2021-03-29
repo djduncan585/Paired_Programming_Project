@@ -22,22 +22,22 @@ public class TransactionFactory
 	{
 		Transaction retValue = null;
 
-		if (transType.equals("Deposit") == true)
+		if (transType.equals("AddBook") == true)
 		{
 			retValue = new DepositTransaction(cust);
 		}
 		else
-		if (transType.equals("Withdraw") == true)
+		if (transType.equals("SearchBook") == true)
 		{
 			retValue = new WithdrawTransaction(cust);
 		}
 		else
-		if (transType.equals("Transfer") == true)
+		if (transType.equals("AddPatron") == true)
 		{
 			retValue = new TransferTransaction(cust);
 		}
 		else
-		if (transType.equals("BalanceInquiry") == true)
+		if (transType.equals("SearchPatron") == true)
 		{
 			retValue = new BalanceInquiryTransaction(cust);
 		}
