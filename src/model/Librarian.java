@@ -127,6 +127,16 @@ public class Librarian implements IView, IModel
 			}
 		}
 		else
+		if (key.equals("SearchBooks") == true)
+		{
+			createAndShowBookSearchView();
+		}
+		else
+		if(key.equals("ExitApp") == true)
+		{
+			exitLibraryApp();
+		}
+		else
 		if (key.equals("CancelTransaction") == true)
 		{
 			createAndShowTransactionChoiceView();
@@ -255,6 +265,13 @@ public class Librarian implements IView, IModel
 		swapToView(currentScene);
 		
 	}
+
+	public void createAndShowBookSearchView()
+	{
+		System.out.println("This is where the Book Search View is created.");
+	}
+
+	public void exitLibraryApp(){System.exit(0);}
 
 
 	/** Register objects to receive state updates. */

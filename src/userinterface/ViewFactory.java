@@ -22,7 +22,8 @@ public class ViewFactory {
 		}
 		else if(viewName.equals("BookSearchView") == true)
 		{
-			return new BookSearchView(model);
+			//return new BookSearchView(model);
+			return null;
 		}
 		else
 			return null;
@@ -33,6 +34,7 @@ public class ViewFactory {
 		if(viewName.equals("SOME VIEW NAME") == true)
 		{
 			//return [A NEW VECTOR VIEW OF THAT NAME TYPE]
+			return null;
 		}
 		else
 			return null;
