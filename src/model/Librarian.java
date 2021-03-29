@@ -117,6 +117,11 @@ public class Librarian implements IView, IModel
 			createAndShowBookSearchView();
 		}
 		else
+		if (key.equals("BookQuery") == true)
+		{
+			doBookQuery((String)value);
+		}
+		else
 		if(key.equals("ExitApp") == true)
 		{
 			exitLibraryApp();
@@ -217,6 +222,12 @@ public class Librarian implements IView, IModel
 
 		// make the view visible by installing it into the frame
 		swapToView(currentScene);
+	}
+
+	public void doBookQuery(String querystring)
+	{
+		System.out.println("From inside doBookQuery");
+		System.out.println(querystring);
 	}
 
 	public void exitLibraryApp(){System.exit(0);}

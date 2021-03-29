@@ -108,7 +108,6 @@ public class BookSearchView extends View
 			@Override
 			public void handle(ActionEvent e) {
 				clearErrorMessage();
-				System.out.println("Getting ready to send to the Librarian...");
 				myModel.stateChangeRequest("BookQuery", bookName.getText());
 			}
 		});
