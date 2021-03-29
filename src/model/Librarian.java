@@ -19,7 +19,7 @@ import userinterface.WindowPosition;
 import java.util.Hashtable;
 import java.util.Properties;
 
-/** The class containing the Teller  for the ATM application */
+/** The class containing the Librarian for the Library application */
 //==============================================================
 public class Librarian implements IView, IModel
 // This class implements all these interfaces (and does NOT extend 'EntityBase')
@@ -34,7 +34,7 @@ public class Librarian implements IView, IModel
 
 	// GUI Components
 	private Hashtable<String, Scene> myViews;
-	private Stage	  	myStage;
+	private Stage myStage;
 
 	private String loginErrorMessage = "";
 	private String transactionErrorMessage = "";
@@ -66,11 +66,13 @@ public class Librarian implements IView, IModel
 	private void setDependencies()
 	{
 		dependencies = new Properties();
-		dependencies.setProperty("Deposit", "TransactionError");
+
+		/*dependencies.setProperty("Deposit", "TransactionError");
 		dependencies.setProperty("Withdraw", "TransactionError");
 		dependencies.setProperty("Transfer", "TransactionError");
 		dependencies.setProperty("BalanceInquiry", "TransactionError");
-		dependencies.setProperty("ImposeServiceCharge", "TransactionError");
+		dependencies.setProperty("ImposeServiceCharge", "TransactionError");*/
+
 
 		myRegistry.setDependencies(dependencies);
 	}

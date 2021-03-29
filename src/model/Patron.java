@@ -174,4 +174,27 @@ public class Patron extends EntityBase
 				 persistentState.getProperty("name") + ", " + persistentState.getProperty("dateOfBirth") + persistentState.getProperty("zip") +
 				'}' + '\n';
 	}
+
+	/**
+	 * This method is needed solely to enable the Account information to be displayable in a table
+	 *
+	 */
+	//--------------------------------------------------------------------------
+	public Vector<String> getEntryListView()
+	{
+		Vector<String> v = new Vector<String>();
+
+		v.addElement(persistentState.getProperty("patronId"));
+		v.addElement(persistentState.getProperty("patronName"));
+		v.addElement(persistentState.getProperty("patronAddress"));
+		v.addElement(persistentState.getProperty("patronCity"));
+		v.addElement(persistentState.getProperty("patronState"));
+		v.addElement(persistentState.getProperty("patronZipCode"));
+		v.addElement(persistentState.getProperty("patronEmail"));
+		v.addElement(persistentState.getProperty("patronId"));
+		v.addElement(persistentState.getProperty("patronDateOfBirth"));
+		v.addElement(persistentState.getProperty("patronStatus"));
+
+		return v;
+	}
 }

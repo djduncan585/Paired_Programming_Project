@@ -175,4 +175,23 @@ public class Book extends EntityBase
 				persistentState.getProperty("bookTitle") + ", " + persistentState.getProperty("pubYear") +
 				'}' + '\n';
 	}
+
+	/**
+	 * This method is needed solely to enable the Book information to be displayable in a table
+	 *
+	 */
+	//--------------------------------------------------------------------------
+	public Vector<String> getEntryListView()
+	{
+		Vector<String> v = new Vector<String>();
+
+		v.addElement(persistentState.getProperty("bookId"));
+		v.addElement(persistentState.getProperty("bookTitle"));
+		v.addElement(persistentState.getProperty("author"));
+		v.addElement(persistentState.getProperty("pubYear"));
+		v.addElement(persistentState.getProperty("bookStatus"));
+
+		return v;
+	}
+
 }
