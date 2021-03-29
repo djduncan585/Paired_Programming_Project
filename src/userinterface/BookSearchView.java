@@ -55,7 +55,6 @@ public class BookSearchView extends View
 
 		populateFields();
 
-		myModel.subscribe("ServiceCharge", this);
 		myModel.subscribe("UpdateStatusMessage", this);
 	}
 
@@ -67,7 +66,7 @@ public class BookSearchView extends View
 		HBox container = new HBox();
 		container.setAlignment(Pos.CENTER);	
 
-		Text titleText = new Text(" Brockport Bank ATM ");
+		Text titleText = new Text("The Party Bookmobile!!!1!");
 		titleText.setFont(Font.font("Arial", FontWeight.BOLD, 20));
 		titleText.setWrappingWidth(300);
 		titleText.setTextAlignment(TextAlignment.CENTER);
@@ -89,71 +88,42 @@ public class BookSearchView extends View
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
         
-        Text prompt = new Text("ACCOUNT INFORMATION");
+        Text prompt = new Text("SEARCH FOR BOOKS");
         prompt.setWrappingWidth(400);
         prompt.setTextAlignment(TextAlignment.CENTER);
         prompt.setFill(Color.BLACK);
         grid.add(prompt, 0, 0, 2, 1);
 
-		Text accNumLabel = new Text(" Account Number : ");
+		Text bookNameLabel = new Text(" Book Name : ");
 		Font myFont = Font.font("Helvetica", FontWeight.BOLD, 12);
-		accNumLabel.setFont(myFont);
-		accNumLabel.setWrappingWidth(150);
-		accNumLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(accNumLabel, 0, 1);
+		bookNameLabel.setFont(myFont);
+		bookNameLabel.setWrappingWidth(150);
+		bookNameLabel.setTextAlignment(TextAlignment.RIGHT);
+		grid.add(bookNameLabel, 0, 1);
 
-		accountNumber = new TextField();
-		accountNumber.setEditable(false);
-		grid.add(accountNumber, 1, 1);
+		bookName = new TextField();
+		bookName.setEditable(true);
+		bookName.setOnAction(new EventHandler<ActionEvent>() {
 
-		Text acctTypeLabel = new Text(" Account Type : ");
-		acctTypeLabel.setFont(myFont);
-		acctTypeLabel.setWrappingWidth(150);
-		acctTypeLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(acctTypeLabel, 0, 2);
-
-		acctType = new TextField();
-		acctType.setEditable(false);
-		grid.add(acctType, 1, 2);
-
-		Text balLabel = new Text(" Account Balance : ");
-		balLabel.setFont(myFont);
-		balLabel.setWrappingWidth(150);
-		balLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(balLabel, 0, 3);
-
-		balance = new TextField();
-		balance.setEditable(false);
-		grid.add(balance, 1, 3);
-
-		Text scLabel = new Text(" Service Charge : ");
-		scLabel.setFont(myFont);
-		scLabel.setWrappingWidth(150);
-		scLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(scLabel, 0, 4);
-
-		serviceCharge = new TextField();
-		serviceCharge.setEditable(true);
-		serviceCharge.setOnAction(new EventHandler<ActionEvent>() {
-
-  		     @Override
-  		     public void handle(ActionEvent e) {
-  		    	clearErrorMessage();
-  		    	myModel.stateChangeRequest("ServiceCharge", serviceCharge.getText());
-       	     }
-        });
-		grid.add(serviceCharge, 1, 4);
+			@Override
+			public void handle(ActionEvent e) {
+				clearErrorMessage();
+				System.out.println("Getting ready to send to the Librarian...");
+				myModel.stateChangeRequest("BookQuery", bookName.getText());
+			}
+		});
+		grid.add(bookName, 1, 1);
 
 		HBox doneCont = new HBox(10);
 		doneCont.setAlignment(Pos.CENTER);
-		cancelButton = new Button("Back");
+		cancelButton = new Button("Cancel");
 		cancelButton.setFont(Font.font("Arial", FontWeight.BOLD, 14));
 		cancelButton.setOnAction(new EventHandler<ActionEvent>() {
 
        		     @Override
        		     public void handle(ActionEvent e) {
        		    	clearErrorMessage();
-       		    	myModel.stateChangeRequest("AccountCancelled", null);   
+       		    	myModel.stateChangeRequest("CancelTransaction", null);
             	  }
         	});
 		doneCont.getChildren().add(cancelButton);
@@ -177,10 +147,7 @@ public class BookSearchView extends View
 	//-------------------------------------------------------------
 	public void populateFields()
 	{
-		accountNumber.setText((String)myModel.getState("AccountNumber"));
-		acctType.setText((String)myModel.getState("Type"));
-		balance.setText((String)myModel.getState("Balance"));
-	 	serviceCharge.setText((String)myModel.getState("ServiceCharge"));
+
 	}
 
 	/**
@@ -193,9 +160,7 @@ public class BookSearchView extends View
 
 		if (key.equals("ServiceCharge") == true)
 		{
-			String val = (String)value;
-			serviceCharge.setText(val);
-			displayMessage("Service Charge Imposed: $ " + val);
+
 		}
 	}
 

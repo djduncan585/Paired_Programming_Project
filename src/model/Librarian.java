@@ -36,7 +36,6 @@ public class Librarian implements IView, IModel
 	private Hashtable<String, Scene> myViews;
 	private Stage myStage;
 
-	private String loginErrorMessage = "";
 	private String transactionErrorMessage = "";
 
 	// constructor for this class
@@ -113,20 +112,6 @@ public class Librarian implements IView, IModel
 		// just set up dependencies for
 		// DEBUG System.out.println("Teller.sCR: key = " + key);
 
-		if (key.equals("Login") == true)
-		{
-			if (value != null)
-			{
-				loginErrorMessage = "";
-
-				boolean flag = loginAccountHolder((Properties)value);
-				if (flag == true)
-				{
-					createAndShowTransactionChoiceView();
-				}
-			}
-		}
-		else
 		if (key.equals("SearchBooks") == true)
 		{
 			createAndShowBookSearchView();
@@ -139,31 +124,6 @@ public class Librarian implements IView, IModel
 		else
 		if (key.equals("CancelTransaction") == true)
 		{
-			createAndShowTransactionChoiceView();
-		}
-		else
-		if ((key.equals("Deposit") == true) || (key.equals("Withdraw") == true) ||
-			(key.equals("Transfer") == true) || (key.equals("BalanceInquiry") == true) ||
-			(key.equals("ImposeServiceCharge") == true))
-		{
-			String transType = key;
-
-			if (myAccountHolder != null)
-			{
-				doTransaction(transType);
-			}
-			else
-			{
-				transactionErrorMessage = "Transaction impossible: Customer not identified";
-			}
-
-		}
-		else
-		if (key.equals("Logout") == true)
-		{
-			myAccountHolder = null;
-			myViews.remove("TransactionChoiceView");
-
 			createAndShowLibrarianView();
 		}
 
@@ -179,30 +139,6 @@ public class Librarian implements IView, IModel
 		stateChangeRequest(key, value);
 	}
 
-	/**
-	 * Login AccountHolder corresponding to user name and password.
-	 */
-	//----------------------------------------------------------
-	public boolean loginAccountHolder(Properties props)
-	{
-		try
-		{
-			myAccountHolder = new AccountHolder(props);
-			// DEBUG System.out.println("Account Holder: " + myAccountHolder.getState("Name") + " successfully logged in");
-			return true;
-		}
-		catch (InvalidPrimaryKeyException ex)
-		{
-				loginErrorMessage = "ERROR: " + ex.getMessage();
-				return false;
-		}
-		catch (PasswordMismatchException exec)
-		{
-
-				loginErrorMessage = "ERROR: " + exec.getMessage();
-				return false;
-		}
-	}
 
 
 	/**
@@ -268,7 +204,19 @@ public class Librarian implements IView, IModel
 
 	public void createAndShowBookSearchView()
 	{
-		System.out.println("This is where the Book Search View is created.");
+		Scene currentScene = (Scene)myViews.get("BookSearchView");
+
+		if (currentScene == null)
+		{
+			// create our initial view
+			View newView = ViewFactory.createView("BookSearchView", this); // USE VIEW FACTORY
+			currentScene = new Scene(newView);
+			myViews.put("BookSearchView", currentScene);
+		}
+
+
+		// make the view visible by installing it into the frame
+		swapToView(currentScene);
 	}
 
 	public void exitLibraryApp(){System.exit(0);}

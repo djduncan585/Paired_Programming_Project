@@ -22,8 +22,7 @@ public class ViewFactory {
 		}
 		else if(viewName.equals("BookSearchView") == true)
 		{
-			//return new BookSearchView(model);
-			return null;
+			return new BookSearchView(model);
 		}
 		else
 			return null;
