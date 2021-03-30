@@ -36,7 +36,6 @@ public class ViewFactory {
 	{
 		if(viewName.equals("SOME VIEW NAME") == true)
 		{
-			//return [A NEW VECTOR VIEW OF THAT NAME TYPE]
 			return null;
 		}
 		else

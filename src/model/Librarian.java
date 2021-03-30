@@ -132,6 +132,11 @@ public class Librarian implements IView, IModel
 			doPatronQuery((String)value);
 		}
 		else
+		if (key.equals("AddBook") == true)
+		{
+			createAndShowBookSearchView();
+		}
+		else
 		if(key.equals("ExitApp") == true)
 		{
 			exitLibraryApp();
