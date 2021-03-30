@@ -88,8 +88,8 @@ public class PatronCollectionView extends View
 			
 			tableOfPatrons.setItems(tableData);
 		}
-		catch (Exception e) {//SQLException e) {
-			// Need to handle this exception
+		catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

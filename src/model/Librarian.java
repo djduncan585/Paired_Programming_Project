@@ -38,6 +38,9 @@ public class Librarian implements IView, IModel
 
 	private String transactionErrorMessage = "";
 
+	private BookCollection bookCollection;
+	private PatronCollection patronCollection;
+
 	// constructor for this class
 	//----------------------------------------------------------
 	public Librarian()
@@ -87,19 +90,17 @@ public class Librarian implements IView, IModel
 	//----------------------------------------------------------
 	public Object getState(String key)
 	{
-		if (key.equals("TransactionError") == true)
-		{
+		if (key.equals("TransactionError") == true) {
 			return transactionErrorMessage;
 		}
 		else
-		if (key.equals("Name") == true)
+		if (key.equals("BookList") == true)
 		{
-			if (myAccountHolder != null)
-			{
-				return myAccountHolder.getState("Name");
-			}
-			else
-				return "Undefined";
+			return bookCollection;
+		}
+		if (key.equals("PatronList") == true)
+		{
+			return patronCollection;
 		}
 		else
 			return "";
@@ -245,7 +246,7 @@ public class Librarian implements IView, IModel
 
 	public void doBookQuery(String querystring)
 	{
-		BookCollection bookCollection = new BookCollection();
+		bookCollection = new BookCollection();
 		System.out.println(bookCollection.getBooksByTitle(querystring));
 
 		Scene currentScene = (Scene)myViews.get("BookCollectionView");
@@ -257,6 +258,7 @@ public class Librarian implements IView, IModel
 			currentScene = new Scene(newView);
 			myViews.put("BookCollectionView", currentScene);
 		}
+
 
 		// make the view visible by installing it into the frame
 		swapToView(currentScene);
@@ -281,10 +283,10 @@ public class Librarian implements IView, IModel
 
 	public void doPatronQuery(String querystring)
 	{
-		PatronCollection patronCollection = new PatronCollection();
+		patronCollection = new PatronCollection();
 		System.out.println(patronCollection.getPatronsByZip(querystring));
 
-		Scene currentScene = (Scene)myViews.get("BookCollectionView");
+		Scene currentScene = (Scene)myViews.get("PatronCollectionView");
 
 		if (currentScene == null)
 		{

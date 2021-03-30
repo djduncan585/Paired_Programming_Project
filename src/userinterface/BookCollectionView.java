@@ -53,14 +53,12 @@ public class BookCollectionView extends View
 		container.getChildren().add(createStatusLog("                                            "));
 
 		getChildren().add(container);
-		System.out.println("Children gotten");
 		populateFields();
 	}
 
 	//--------------------------------------------------------------------------
 	protected void populateFields()
 	{
-		System.out.println("Inside populateFields");
 		getEntryTableModelValues();
 	}
 
@@ -72,7 +70,6 @@ public class BookCollectionView extends View
 		try
 		{
 			BookCollection bookCollection = (BookCollection)myModel.getState("BookList");
-			System.out.println("State gotten for BookList");
 	 		Vector entryList = (Vector)bookCollection.getState("Books");
 	 		System.out.println("entryList element count: " + entryList.size());
 			Enumeration entries = entryList.elements();

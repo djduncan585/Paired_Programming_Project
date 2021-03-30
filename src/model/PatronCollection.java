@@ -13,7 +13,7 @@ public class PatronCollection extends EntityBase {
 
     private static final String myTableName = Patron.myTableName;
 
-    Vector<Patron> patrons;
+    private Vector<Patron> patrons;
 
     public PatronCollection() {
         super(myTableName);
@@ -70,6 +70,11 @@ public class PatronCollection extends EntityBase {
 
     @Override
     public Object getState(String key) {
+        if (key.equals("Patrons"))
+            return patrons;
+        else
+        if (key.equals("PatronList"))
+            return this;
         return null;
     }
 
