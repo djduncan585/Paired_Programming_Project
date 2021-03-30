@@ -13,6 +13,8 @@ public class PatronCollection extends EntityBase {
 
     private static final String myTableName = Patron.myTableName;
 
+    Vector<Patron> patrons;
+
     public PatronCollection() {
         super(myTableName);
     }
@@ -35,16 +37,16 @@ public class PatronCollection extends EntityBase {
     public Vector getPatronsByDate(String date) {
         String query = "SELECT * FROM " + myTableName;
         Vector allPatrons = getSelectQueryResult(query);
-        Vector<Patron> Patrons= new Vector();
+        patrons= new Vector();
 
         for (Object o: allPatrons) {
             Properties props = (Properties)o;
 
             if (props.getProperty("dateOfBirth").compareTo(date) > 0) {
-                Patrons.add(new Patron(props));
+                patrons.add(new Patron(props));
             }
         }
-        return Patrons;
+        return patrons;
     }
 
     
@@ -52,15 +54,15 @@ public class PatronCollection extends EntityBase {
     public Vector<Patron> getPatronsByZip(String zip) {
         String query = "SELECT * FROM " + myTableName + " WHERE (zip = '" + zip + "')";
         Vector allPatrons = getSelectQueryResult(query);
-        Vector<Patron> Patrons= new Vector();
+        patrons= new Vector();
 
         for (Object o: allPatrons) {
             Properties props = (Properties)o;
 
-            Patrons.add(new Patron(props));
+            patrons.add(new Patron(props));
 
         }
-        return Patrons;
+        return patrons;
 
     }
 

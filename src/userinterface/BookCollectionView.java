@@ -139,22 +139,22 @@ public class BookCollectionView extends View
 		TableColumn bookTitleColumn = new TableColumn("Book Title") ;
 		bookTitleColumn.setMinWidth(100);
 		bookTitleColumn.setCellValueFactory(
-	                new PropertyValueFactory<AccountTableModel, String>("bookTitle"));
+	                new PropertyValueFactory<BookTableModel, String>("bookTitle"));
 		  
 		TableColumn authorColumn = new TableColumn("Author") ;
 		authorColumn.setMinWidth(100);
 		authorColumn.setCellValueFactory(
-	                new PropertyValueFactory<AccountTableModel, String>("author"));
+	                new PropertyValueFactory<BookTableModel, String>("author"));
 		
 		TableColumn pubYearColumn = new TableColumn("Published Year") ;
 		pubYearColumn.setMinWidth(100);
 		pubYearColumn.setCellValueFactory(
-	                new PropertyValueFactory<AccountTableModel, String>("pubYear"));
+	                new PropertyValueFactory<BookTableModel, String>("pubYear"));
 
 		TableColumn bookStatusColumn = new TableColumn("Book Status") ;
 		pubYearColumn.setMinWidth(100);
 		pubYearColumn.setCellValueFactory(
-				new PropertyValueFactory<AccountTableModel, String>("bookStatus"));
+				new PropertyValueFactory<BookTableModel, String>("bookStatus"));
 
 		tableOfBooks.getColumns().addAll(bookIdColumn, bookTitleColumn, authorColumn, pubYearColumn, bookStatusColumn);
 

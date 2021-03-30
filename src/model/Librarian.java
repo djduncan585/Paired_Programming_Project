@@ -36,7 +36,6 @@ public class Librarian implements IView, IModel
 	private Hashtable<String, Scene> myViews;
 	private Stage myStage;
 
-	private String loginErrorMessage = "";
 	private String transactionErrorMessage = "";
 
 	// constructor for this class
@@ -113,47 +112,33 @@ public class Librarian implements IView, IModel
 		// just set up dependencies for
 		// DEBUG System.out.println("Teller.sCR: key = " + key);
 
-		if (key.equals("Login") == true)
+		if (key.equals("SearchBooks") == true)
 		{
-			if (value != null)
-			{
-				loginErrorMessage = "";
-
-				boolean flag = loginAccountHolder((Properties)value);
-				if (flag == true)
-				{
-					createAndShowTransactionChoiceView();
-				}
-			}
+			createAndShowBookSearchView();
+		}
+		else
+		if (key.equals("BookQuery") == true)
+		{
+			doBookQuery((String)value);
+		}
+		else
+		if (key.equals("SearchPatrons") == true)
+		{
+			createAndShowPatronSearchView();
+		}
+		else
+		if (key.equals("PatronQuery") == true)
+		{
+			doPatronQuery((String)value);
+		}
+		else
+		if(key.equals("ExitApp") == true)
+		{
+			exitLibraryApp();
 		}
 		else
 		if (key.equals("CancelTransaction") == true)
 		{
-			createAndShowTransactionChoiceView();
-		}
-		else
-		if ((key.equals("Deposit") == true) || (key.equals("Withdraw") == true) ||
-			(key.equals("Transfer") == true) || (key.equals("BalanceInquiry") == true) ||
-			(key.equals("ImposeServiceCharge") == true))
-		{
-			String transType = key;
-
-			if (myAccountHolder != null)
-			{
-				doTransaction(transType);
-			}
-			else
-			{
-				transactionErrorMessage = "Transaction impossible: Customer not identified";
-			}
-
-		}
-		else
-		if (key.equals("Logout") == true)
-		{
-			myAccountHolder = null;
-			myViews.remove("TransactionChoiceView");
-
 			createAndShowLibrarianView();
 		}
 
@@ -169,30 +154,6 @@ public class Librarian implements IView, IModel
 		stateChangeRequest(key, value);
 	}
 
-	/**
-	 * Login AccountHolder corresponding to user name and password.
-	 */
-	//----------------------------------------------------------
-	public boolean loginAccountHolder(Properties props)
-	{
-		try
-		{
-			myAccountHolder = new AccountHolder(props);
-			// DEBUG System.out.println("Account Holder: " + myAccountHolder.getState("Name") + " successfully logged in");
-			return true;
-		}
-		catch (InvalidPrimaryKeyException ex)
-		{
-				loginErrorMessage = "ERROR: " + ex.getMessage();
-				return false;
-		}
-		catch (PasswordMismatchException exec)
-		{
-
-				loginErrorMessage = "ERROR: " + exec.getMessage();
-				return false;
-		}
-	}
 
 
 	/**
@@ -255,6 +216,80 @@ public class Librarian implements IView, IModel
 		swapToView(currentScene);
 		
 	}
+
+	public void createAndShowBookSearchView()
+	{
+		Scene currentScene = (Scene)myViews.get("BookSearchView");
+
+		if (currentScene == null)
+		{
+			// create our initial view
+			View newView = ViewFactory.createView("BookSearchView", this); // USE VIEW FACTORY
+			currentScene = new Scene(newView);
+			myViews.put("BookSearchView", currentScene);
+		}
+
+
+		// make the view visible by installing it into the frame
+		swapToView(currentScene);
+	}
+
+	public void doBookQuery(String querystring)
+	{
+		BookCollection bookCollection = new BookCollection();
+		System.out.println(bookCollection.getBooksByTitle(querystring));
+
+		Scene currentScene = (Scene)myViews.get("BookCollectionView");
+
+		if (currentScene == null)
+		{
+			// create our initial view
+			View newView = ViewFactory.createView("BookCollectionView", this); // USE VIEW FACTORY
+			currentScene = new Scene(newView);
+			myViews.put("BookCollectionView", currentScene);
+		}
+
+		// make the view visible by installing it into the frame
+		swapToView(currentScene);
+	}
+
+	public void createAndShowPatronSearchView()
+	{
+		Scene currentScene = (Scene)myViews.get("PatronSearchView");
+
+		if (currentScene == null)
+		{
+			// create our initial view
+			View newView = ViewFactory.createView("PatronSearchView", this); // USE VIEW FACTORY
+			currentScene = new Scene(newView);
+			myViews.put("PatronSearchView", currentScene);
+		}
+
+
+		// make the view visible by installing it into the frame
+		swapToView(currentScene);
+	}
+
+	public void doPatronQuery(String querystring)
+	{
+		PatronCollection patronCollection = new PatronCollection();
+		System.out.println(patronCollection.getPatronsByZip(querystring));
+
+		Scene currentScene = (Scene)myViews.get("BookCollectionView");
+
+		if (currentScene == null)
+		{
+			// create our initial view
+			View newView = ViewFactory.createView("PatronCollectionView", this); // USE VIEW FACTORY
+			currentScene = new Scene(newView);
+			myViews.put("PatronCollectionView", currentScene);
+		}
+
+		// make the view visible by installing it into the frame
+		swapToView(currentScene);
+	}
+
+	public void exitLibraryApp(){System.exit(0);}
 
 
 	/** Register objects to receive state updates. */

@@ -9,6 +9,8 @@ public class BookCollection extends EntityBase {
 
     private static final String myTableName = Book.myTableName;
 
+    private Vector<Book> books;
+
     public BookCollection() {
         super(myTableName);
     }
@@ -30,7 +32,7 @@ public class BookCollection extends EntityBase {
     public Vector<Book> getBooksByTitle(String book) {
         String query = "SELECT * FROM " + myTableName + " WHERE (bookTitle LIKE '%" + book + "%')";
         Vector allBooks = getSelectQueryResult(query);
-        Vector<Book> books= new Vector();
+        books= new Vector();
 
         for (Object o: allBooks) {
             Properties props = (Properties)o;
@@ -43,7 +45,7 @@ public class BookCollection extends EntityBase {
     public Vector<Book> getBooksByYear(String year) {
         String query = "SELECT * FROM " + myTableName;
         Vector allBooks = getSelectQueryResult(query);
-        Vector<Book> books= new Vector();
+        books= new Vector();
 
         for (Object o: allBooks) {
             Properties props = (Properties)o;
@@ -56,7 +58,13 @@ public class BookCollection extends EntityBase {
     }
 
     @Override
-    public Object getState(String key) {
+    public Object getState(String key)
+    {
+        if (key.equals("Books"))
+            return books;
+        else
+        if (key.equals("BookList"))
+            return this;
         return null;
     }
 

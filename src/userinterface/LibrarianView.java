@@ -178,21 +178,18 @@ public class LibrarianView extends View
 		searchPatronsButton.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
-			public void handle(ActionEvent e) {
-				processAction(e);
-			}
+			public void handle(ActionEvent e) { myModel.stateChangeRequest("SearchPatrons", null); }
 		});
 		buttonBox.getChildren().add(searchPatronsButton);
 
 		exitButton = new Button("Exit");
 		exitButton.setMinWidth(buttonBox.getPrefWidth());
 		exitButton.setCancelButton(true); //Activates on escape key
-		searchPatronsButton.setOnAction(new EventHandler<ActionEvent>() {
+		exitButton.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
-			public void handle(ActionEvent e) {
-				processAction(e);
-			}
+			public void handle(ActionEvent e)
+			{ myModel.stateChangeRequest("ExitApp", null); }
 		});
 		buttonBox.getChildren().add(exitButton);
 
