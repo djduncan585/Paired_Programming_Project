@@ -53,26 +53,28 @@ public class BookCollectionView extends View
 		container.getChildren().add(createStatusLog("                                            "));
 
 		getChildren().add(container);
-		
+		System.out.println("Children gotten");
 		populateFields();
 	}
 
 	//--------------------------------------------------------------------------
 	protected void populateFields()
 	{
+		System.out.println("Inside populateFields");
 		getEntryTableModelValues();
 	}
 
 	//--------------------------------------------------------------------------
 	protected void getEntryTableModelValues()
 	{
-		
 		ObservableList<BookTableModel> tableData = FXCollections.observableArrayList();
+		System.out.println("Inside getEntryTableModelValues");
 		try
 		{
 			BookCollection bookCollection = (BookCollection)myModel.getState("BookList");
-
+			System.out.println("State gotten for BookList");
 	 		Vector entryList = (Vector)bookCollection.getState("Books");
+	 		System.out.println("entryList element count: " + entryList.size());
 			Enumeration entries = entryList.elements();
 
 			while (entries.hasMoreElements() == true)
@@ -89,7 +91,7 @@ public class BookCollectionView extends View
 			tableOfBooks.setItems(tableData);
 		}
 		catch (Exception e) {//SQLException e) {
-			// Need to handle this exception
+			e.printStackTrace();
 		}
 	}
 

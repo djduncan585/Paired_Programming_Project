@@ -15,6 +15,12 @@ public class BookCollection extends EntityBase {
         super(myTableName);
     }
 
+    public BookCollection(String searchString)
+    {
+        super(myTableName);
+        books = this.getBooksByTitle(searchString);
+    }
+
     public void addBook (String author, String bookTitle, String pubYear, String status) {
 
 
