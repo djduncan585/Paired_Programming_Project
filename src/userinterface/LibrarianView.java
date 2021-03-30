@@ -178,9 +178,7 @@ public class LibrarianView extends View
 		searchPatronsButton.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
-			public void handle(ActionEvent e) {
-				processAction(e);
-			}
+			public void handle(ActionEvent e) { myModel.stateChangeRequest("SearchPatrons", null); }
 		});
 		buttonBox.getChildren().add(searchPatronsButton);
 

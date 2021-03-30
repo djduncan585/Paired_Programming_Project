@@ -122,6 +122,16 @@ public class Librarian implements IView, IModel
 			doBookQuery((String)value);
 		}
 		else
+		if (key.equals("SearchPatrons") == true)
+		{
+			createAndShowPatronSearchView();
+		}
+		else
+		if (key.equals("PatronQuery") == true)
+		{
+			doPatronQuery((String)value);
+		}
+		else
 		if(key.equals("ExitApp") == true)
 		{
 			exitLibraryApp();
@@ -228,6 +238,55 @@ public class Librarian implements IView, IModel
 	{
 		BookCollection bookCollection = new BookCollection();
 		System.out.println(bookCollection.getBooksByTitle(querystring));
+
+		Scene currentScene = (Scene)myViews.get("BookCollectionView");
+
+		if (currentScene == null)
+		{
+			// create our initial view
+			View newView = ViewFactory.createView("BookCollectionView", this); // USE VIEW FACTORY
+			currentScene = new Scene(newView);
+			myViews.put("BookCollectionView", currentScene);
+		}
+
+		// make the view visible by installing it into the frame
+		swapToView(currentScene);
+	}
+
+	public void createAndShowPatronSearchView()
+	{
+		Scene currentScene = (Scene)myViews.get("PatronSearchView");
+
+		if (currentScene == null)
+		{
+			// create our initial view
+			View newView = ViewFactory.createView("PatronSearchView", this); // USE VIEW FACTORY
+			currentScene = new Scene(newView);
+			myViews.put("PatronSearchView", currentScene);
+		}
+
+
+		// make the view visible by installing it into the frame
+		swapToView(currentScene);
+	}
+
+	public void doPatronQuery(String querystring)
+	{
+		PatronCollection patronCollection = new PatronCollection();
+		System.out.println(patronCollection.getPatronsByZip(querystring));
+
+		Scene currentScene = (Scene)myViews.get("BookCollectionView");
+
+		if (currentScene == null)
+		{
+			// create our initial view
+			View newView = ViewFactory.createView("PatronCollectionView", this); // USE VIEW FACTORY
+			currentScene = new Scene(newView);
+			myViews.put("PatronCollectionView", currentScene);
+		}
+
+		// make the view visible by installing it into the frame
+		swapToView(currentScene);
 	}
 
 	public void exitLibraryApp(){System.exit(0);}
