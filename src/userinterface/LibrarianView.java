@@ -157,7 +157,7 @@ public class LibrarianView extends View
 
 			@Override
 			public void handle(ActionEvent e) {
-				processAction(e);
+				myModel.stateChangeRequest("AddPatron", null);
 			}
 		});
 		buttonBox.getChildren().add(addPatronButton);
