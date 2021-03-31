@@ -189,7 +189,7 @@ public class Book extends EntityBase
 		v.addElement(persistentState.getProperty("bookTitle"));
 		v.addElement(persistentState.getProperty("author"));
 		v.addElement(persistentState.getProperty("pubYear"));
-		v.addElement(persistentState.getProperty("bookStatus"));
+		v.addElement(persistentState.getProperty("status"));
 
 		return v;
 	}

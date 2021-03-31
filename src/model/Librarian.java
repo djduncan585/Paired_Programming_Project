@@ -247,7 +247,7 @@ public class Librarian implements IView, IModel
 	public void doBookQuery(String querystring)
 	{
 		bookCollection = new BookCollection();
-		System.out.println(bookCollection.getBooksByTitle(querystring));
+		bookCollection.getBooksByTitle(querystring);
 
 		Scene currentScene = (Scene)myViews.get("BookCollectionView");
 

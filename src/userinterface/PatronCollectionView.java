@@ -30,8 +30,7 @@ import java.util.Vector;
 public class PatronCollectionView extends View
 {
 	protected TableView<PatronTableModel> tableOfPatrons;
-	protected Button cancelButton;
-	protected Button submitButton;
+	protected Button okButton;
 
 	protected MessageView statusLog;
 
@@ -192,40 +191,19 @@ public class PatronCollectionView extends View
 		scrollPane.setPrefSize(115, 150);
 		scrollPane.setContent(tableOfPatrons);
 
-		submitButton = new Button("Submit");
- 		submitButton.setOnAction(new EventHandler<ActionEvent>() {
+		okButton = new Button("OK");
+ 		okButton.setOnAction(new EventHandler<ActionEvent>() {
 
        		     @Override
        		     public void handle(ActionEvent e) {
-       		     	clearErrorMessage(); 
-					// do the inquiry
-					processPatronSelected();
-					
-            	 }
-        	});
-
-		cancelButton = new Button("Back");
- 		cancelButton.setOnAction(new EventHandler<ActionEvent>() {
-
-       		     @Override
-       		     public void handle(ActionEvent e) {
-					/**
-					 * Process the Cancel button.
-					 * The ultimate result of this action is that the transaction will tell the teller to
-					 * to switch to the transaction choice view. BUT THAT IS NOT THIS VIEW'S CONCERN.
-					 * It simply tells its model (controller) that the transaction was canceled, and leaves it
-					 * to the model to decide to tell the teller to do the switch back.
-			 		*/
-					//----------------------------------------------------------
        		     	clearErrorMessage();
-       		     	myModel.stateChangeRequest("CancelPatronList", null);
+       		     	myModel.stateChangeRequest("CancelTransaction", null);
             	  }
         	});
 
 		HBox btnContainer = new HBox(100);
 		btnContainer.setAlignment(Pos.CENTER);
-		btnContainer.getChildren().add(submitButton);
-		btnContainer.getChildren().add(cancelButton);
+		btnContainer.getChildren().add(okButton);
 		
 		vbox.getChildren().add(grid);
 		vbox.getChildren().add(scrollPane);

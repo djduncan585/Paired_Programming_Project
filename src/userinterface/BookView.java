@@ -175,18 +175,18 @@ public class BookView extends View
 		bookStatusLabel.setFont(myFont);
 		bookStatusLabel.setWrappingWidth(150);
 		bookStatusLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(pubYearLabel, 0, 5);
+		grid.add(bookStatusLabel, 0, 5);
 
-		pubYear = new TextField();
-		pubYear.setEditable(true);
-		pubYear.setOnAction(new EventHandler<ActionEvent>() {
+		bookStatus = new TextField();
+		bookStatus.setEditable(true);
+		/*bookStatus.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent e) {
 				clearErrorMessage();
-				myModel.stateChangeRequest("pubYear", pubYear.getText());
+				myModel.stateChangeRequest("bookStatus", pubYear.getText());
 			}
-		});
+		});*/
 		grid.add(pubYear, 1, 5);
 
 		HBox doneCont = new HBox(10);
