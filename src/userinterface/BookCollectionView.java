@@ -150,7 +150,7 @@ public class BookCollectionView extends View
 		TableColumn bookStatusColumn = new TableColumn("Book Status") ;
 		pubYearColumn.setMinWidth(100);
 		pubYearColumn.setCellValueFactory(
-				new PropertyValueFactory<BookTableModel, String>("bookStatus"));
+				new PropertyValueFactory<BookTableModel, String>("status"));
 
 		tableOfBooks.getColumns().addAll(bookIdColumn, bookTitleColumn, authorColumn, pubYearColumn, bookStatusColumn);
 
