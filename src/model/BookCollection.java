@@ -15,14 +15,14 @@ public class BookCollection extends EntityBase {
         super(myTableName);
     }
 
-    public void addBook (String author, String bookTitle, String pubYear, String status) {
+    public void addBook (String author, String bookTitle, String pubYear) {
 
 
         Properties properties = new Properties();
         properties.put("author", author);
         properties.put("bookTitle", bookTitle);
         properties.put("pubYear", pubYear);
-        properties.put("status", status);
+
         Book book = new Book(properties);
         book.update();
 

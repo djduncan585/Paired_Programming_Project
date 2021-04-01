@@ -20,7 +20,7 @@ public class PatronCollection extends EntityBase {
     }
     
 
-    public void addPatron(String address, String city, String dateOfBirth, String email, String name, String stateCode, String status, String zip) {
+    public void addPatron(String address, String city, String dateOfBirth, String email, String name, String stateCode, String zip) {
         Properties properties = new Properties();
         properties.put("address", address);
         properties.put("city", city);
@@ -28,7 +28,6 @@ public class PatronCollection extends EntityBase {
         properties.put("email", email);
         properties.put("name", name);
         properties.put("stateCode", stateCode);
-        properties.put("status", status);
         properties.put("zip", zip);
         Patron patron = new Patron(properties);
         patron.update();
